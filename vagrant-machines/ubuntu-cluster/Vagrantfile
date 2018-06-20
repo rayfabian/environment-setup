@@ -1,0 +1,47 @@
+Vagrant.configure("2") do |config|
+  config.vm.define "masterk8" do |m|
+    m.vm.box = "ubuntu/xenial64"
+    m.vm.hostname = 'masterk8'
+    m.vm.box_url = "ubuntu/xenial64"
+
+    m.vm.network :private_network, ip: "192.168.56.101"
+
+    m.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 4096]
+      v.customize ["modifyvm", :id, "--name", "masterk8"]
+      v.customize ["modifyvm", :id, "--cpus", 1]
+    end
+  end
+
+  config.vm.define "node1" do |n1|
+    n1.vm.box = "ubuntu/xenial64"
+    n1.vm.hostname = 'node1'
+    n1.vm.box_url = "ubuntu/xenial64"
+
+    n1.vm.network :private_network, ip: "192.168.56.102"
+
+    n1.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 2048]
+      v.customize ["modifyvm", :id, "--name", "node1"]
+      v.customize ["modifyvm", :id, "--cpus", 1]
+    end
+  end
+
+
+  config.vm.define "node2" do |n2|
+    n2.vm.box = "ubuntu/xenial64"
+    n2.vm.hostname = 'node2'
+    n2.vm.box_url = "ubuntu/xenial64"
+
+    n2.vm.network :private_network, ip: "192.168.56.103"
+
+    n2.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 2048]
+      v.customize ["modifyvm", :id, "--name", "node2"]
+      v.customize ["modifyvm", :id, "--cpus", 1]
+    end
+  end
+end
