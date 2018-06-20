@@ -1,8 +1,6 @@
 #!/bin/bash
-#get IP address
+#IP address
 masterIP=`ifconfig eth0 | grep "inet addr" | cut -d ':' -f 2 | cut -d ' ' -f 1`
-echo "Master IP address : $masterIP"
-versionMajor=`kubectl version --client | awk '{print $3}' | cut -d ':' -f 2`
-versionMinor=`kubectl version --client | awk '{print $4}' | cut -d ':' -f 2`
-version="$versionMajor.$versionMinor"
-echo "$version"
+#kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=172.26.4.96 --kubernetes-version stable-1.10
+set -x
+kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address="${masterIP}" --kubernetes-version $1
