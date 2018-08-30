@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: contact-v1
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: contact-v1
+    spec:
+      containers:
+      - name: contact-v1
+        image: rayfabian.azurecr.io/contact-api  
+        ports:
+        - containerPort: 8083
+          name: contact-v1
+      imagePullSecrets:
+      - name: rayfabian       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: contact-v1
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8083
+  selector:
+    app: contact-v1

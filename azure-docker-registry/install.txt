@@ -1,0 +1,35 @@
+https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-macos?view=azure-cli-latest
+brew update && brew install azure-cli
+
+#create resource group
+az group create --name rayfabian-container-registry-group --location australiaeast
+
+#create container registry
+az acr create --resource-group ayfabian-container-registry-group --name rayfabian --sku Basic
+
+#login
+az acr login --name rayfabian
+
+#show server name
+acr list --resource-group rayfabian-container-registry-group --query "[].{acrLoginServer:loginServer}" --output table
+
+AcrLoginServer
+--------------------
+
+#tag a container
+docker tag rayfabian/contact-api rayfabian.azurecr.io/contact-api
+
+#push a container
+docker push rayfabian.azurecr.io/contact-api
+
+#list container image
+az acr repository list --name rayfabian --output table
+
+#list tags
+az acr repository show-tags --name <acrName> --repository aci-helloworld --output table
+
+#login registry (cli or bash)
+https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-docker-cli
+az acr login --name myregistry
+#bash
+docker login rayfabian.azurecr.io -u rayfabian -p N9Cx3KY5qFmrruO4ETnDzIgVS/NdrW9M

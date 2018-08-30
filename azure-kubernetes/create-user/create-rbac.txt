@@ -1,0 +1,15 @@
+Reys-MacBook-Pro:~ rayfabian$ az ad sp create-for-rbac --name bitbucket --password "Password_123" 
+{
+  "appId": "c5eb78bd-30d3-4ec6-a897-f02652a8221d",
+  "displayName": "bitbucket",
+  "name": "http://bitbucket",
+  "password": "Password_123",
+  "tenant": "20052796-1bd2-4e52-98c0-c3f910a7bdda"
+}
+
+
+az login --service-principal -u c5eb78bd-30d3-4ec6-a897-f02652a8221d --password Password_123 --tenant 20052796-1bd2-4e52-98c0-c3f910a7bdda
+
+
+muleprodak-muleprodaksclust-1586dd-2d52c31e.hcp.australiaeast.azmk8s.io
+MuleProdAKSCluster

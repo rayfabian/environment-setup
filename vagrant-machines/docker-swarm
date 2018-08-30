@@ -1,0 +1,4 @@
+docker swarm join --token SWMTKN-1-2lgd4oc22050vpde0ysipeyslby03iqevc6otx3vn7un3itnoj-8yefvtkquerjd9hc80z82162e 192.168.56.102:2377
+
+myelastic-cluster
+xnfkczdft4d2ve01smduze5zh

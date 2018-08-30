@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: contact-v1
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: contact-v1
+    spec:
+      containers:
+      - name: contact-v1
+        image: rayfabian.azurecr.io/contact_v1-mule-3.8.0:latest
+        ports:
+        - containerPort: 9083
+          name: contact-v1
+        resources:
+          requests:
+            memory: "512Mi"
+          limits:
+            memory: "1536Mi"
+        env:
+        - name: JVM_OPTS
+          value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1 -Xms512M"
+      imagePullSecrets:
+      - name: rayfabian      
+#kubectl apply -f deployment-contact-v1-mule-3.yml
+#kubectl delete deployment contact-v1

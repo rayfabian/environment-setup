@@ -1,0 +1,1 @@
+kubectl run <application-name> --labels="app=<application-name>" --image=gcr.io/<google-cloud-project-name>/<application-name>:latest --replicas=2 --port=80
