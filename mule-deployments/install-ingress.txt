@@ -1,0 +1,17 @@
+#install helm
+brew install kubernetes-helm
+
+#create service account
+kubectl create -f helm-rbac.yaml
+
+#configure helm
+helm init --service-account tiller
+
+#install ingress
+helm install stable/nginx-ingress --namespace kube-system
+
+#check ingress
+kubectl get service -l app=nginx-ingress --namespace kube-system
+
+#install cert nmanager
+helm install stable/cert-manager --set ingressShim.defaultIssuerName=letsencrypt-staging --set ingressShim.defaultIssuerKind=ClusterIssuer
